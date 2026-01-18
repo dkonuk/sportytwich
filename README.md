@@ -33,4 +33,4 @@ This project contains a Selenium + Pytest automated UI test for the Twitch mobil
 
 ## Test Run
 
-![Test run recording](assets/test_run.gif)
+![Test run recording](assets/test_run2.gif)
