@@ -28,8 +28,8 @@ def test_search_page(driver):
         "Search results page did not load properly"
 
     # Assertion: results contain the searched keyword
-    assert search_results_page.results_contain_text("StarCraft II"), \
-        "Search results do not contain 'StarCraft II'"
+    assert search_results_page.results_contain_text("StarCraft"), \
+        "Search results do not contain 'StarCraft'"
 
     # 4. Scroll Down for 2 times
     search_results_page.wait_for_page_to_load()

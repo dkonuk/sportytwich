@@ -36,10 +36,3 @@ class BasePage:
         element = self.wait.until(EC.visibility_of_element_located(locator))
         element.clear()
         element.send_keys(text)
-
-    def is_visible(self, locator):
-        return self.wait.until(EC.visibility_of_element_located(locator))
-
-    def demo_pause(self, seconds: float = 1.0):
-        """Visual pause for demo/recording purposes only."""
-        time.sleep(seconds)

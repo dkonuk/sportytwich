@@ -25,22 +25,20 @@ class SearchResultsPage(BasePage):
                 lambda d: d.execute_script("return document.body.scrollHeight") >= previous_height
             )
             new_height = self.driver.execute_script("return document.body.scrollHeight")
-            self.demo_pause()
 
             if previous_height == new_height:
                 break
 
             previous_height = new_height
     def select_first_streamer(self):
+        WebDriverWait(self.driver, 10).until(EC.presence_of_all_elements_located(self.CHANNEL_CARDS))
         channels = self.find_elements(self.CHANNEL_CARDS)
 
         if not channels:
             raise AssertionError("No channels found")
 
         channel = channels[0]
-            # 1. Scroll into view
         self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", channel)
-        self.demo_pause()
 
         channel.click()
         return StreamerPage(self.driver)
@@ -54,10 +52,10 @@ class SearchResultsPage(BasePage):
         return element.is_displayed()
 
     def results_contain_text(self, text, timeout=10):
-        element = WebDriverWait(self.driver, timeout).until(
-            EC.visibility_of_element_located(self.SEARCH_RESULTS_READY)
-        )
-        return text.lower() in element.text.lower()
+        WebDriverWait(self.driver, timeout).until(EC.presence_of_all_elements_located(self.CHANNEL_CARDS))
+        cards = self.find_elements(self.CHANNEL_CARDS)
+        combined = " ".join([c.text for c in cards if c.text])
+        return text.lower() in combined.lower()
 
     def has_streamer_results(self, timeout=10):
         elements = WebDriverWait(self.driver, timeout).until(
