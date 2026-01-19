@@ -30,7 +30,17 @@ This project contains a Selenium + Pytest automated UI test for the Twitch mobil
 
 ## Project Structure
 
+- `pages/` – Page Object classes encapsulating UI interactions
+- `tests/` – Pytest test cases
+- `utils/` – Browser and driver setup utilities
+- `config/` – Configuration values
+- `screenshots/` – Test execution screenshots
+
+
+## Run
+pip install -r requirements.txt
+pytest -v
 
 ## Test Run
 
-![Test run recording](assets/test_run-2.gif)
+![Test run recording](assets/test_run.gif)
